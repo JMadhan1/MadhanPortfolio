@@ -1,0 +1,27 @@
+{
+  "name": "J Madhan - AI/ML Developer Portfolio",
+  "short_name": "Madhan Portfolio",
+  "description": "Professional AI/ML Developer Portfolio showcasing projects, skills, and experience",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "img/img1.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "img/img1.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer", "ai", "ml"],
+  "lang": "en",
+  "dir": "ltr"
+}
