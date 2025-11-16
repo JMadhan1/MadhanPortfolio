@@ -99,6 +99,72 @@
       transition: all 0.3s ease;
     }
 
+    .header.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    /* Scroll Progress Indicator */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      z-index: 1001;
+      transition: width 0.1s ease;
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.25rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(99, 102, 241, 0.6);
+    }
+
+    /* Active Navigation Link */
+    .nav-links a.active {
+      color: var(--accent-primary);
+      position: relative;
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 2px;
+    }
+
     [data-theme="light"] .header {
       background: rgba(255, 255, 255, 0.8);
     }
@@ -480,9 +546,221 @@
 
 
     .hero-role {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       color: var(--text-secondary);
       margin-bottom: 2rem;
+      min-height: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .role-text {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    .role-cursor {
+      animation: blink 1s infinite;
+      color: var(--accent-primary);
+    }
+
+    /* Hero Metrics Dashboard */
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: rgba(99, 102, 241, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 20px;
+    }
+
+    .metric-card {
+      text-align: center;
+      padding: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-label {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Enhanced CTAs */
+    .hero-cta-enhanced {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .cta-primary,
+    .cta-secondary,
+    .cta-tertiary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-primary {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: white;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .cta-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(99, 102, 241, 0.6);
+    }
+
+    .cta-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .cta-primary:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .cta-secondary {
+      background: rgba(99, 102, 241, 0.1);
+      border: 2px solid rgba(99, 102, 241, 0.3);
+      color: var(--text-primary);
+      backdrop-filter: blur(10px);
+    }
+
+    .cta-secondary:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .cta-tertiary {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-primary);
+      padding: 1rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .cta-tertiary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px) scale(1.1);
+    }
+
+    /* Availability Status */
+    .availability-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-top: 2rem;
+      padding: 1rem 1.5rem;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      flex-wrap: wrap;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+    }
+
+    .status-dot.pulse {
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.3);
+        opacity: 0.7;
+      }
+    }
+
+    .status-text {
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .quick-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .quick-link {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 50%;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .quick-link:hover {
+      background: var(--accent-primary);
+      border-color: var(--accent-primary);
+      color: white;
+      transform: translateY(-3px) scale(1.1);
     }
 
     .hero-cta {
@@ -853,20 +1131,196 @@
     }
 
     /* Projects Section */
+    /* Project Stats */
+    .project-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Project Filters */
+    .project-filter {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.75rem 1.5rem;
+      background: rgba(99, 102, 241, 0.1);
+      border: 2px solid rgba(99, 102, 241, 0.3);
+      border-radius: 50px;
+      color: var(--text-primary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .filter-btn:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2.5rem;
     }
 
     .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
-      padding: 2rem;
-      transition: all 0.3s ease;
+      padding: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    [data-theme="light"] .project-card {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .project-image-container {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+      border-radius: 20px 20px 0 0;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .project-card:hover .project-image {
+      transform: scale(1.15);
+    }
+
+    /* Project Overlay */
+    .project-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 1rem;
+      gap: 0.5rem;
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    /* Project Hover Content */
+    .project-hover-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 20;
+    }
+
+    .project-card:hover .project-hover-content {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .preview-btn {
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 50px;
+      color: var(--text-primary);
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .preview-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      background: white;
+    }
+
+    .project-content {
+      padding: 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-description {
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-links {
+      margin-top: auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
     }
 
     .project-card::before {
@@ -886,8 +1340,36 @@
     }
 
     .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      border-color: rgba(99, 102, 241, 0.5);
+    }
+
+    /* Technology Tags */
+    .tech-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .tech-tag:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .tech-tag i {
+      font-size: 0.875rem;
+      color: var(--accent-primary);
     }
 
     .project-header {
@@ -895,6 +1377,39 @@
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 1rem;
+    }
+
+    .project-badge {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .project-badge.featured {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+      color: white;
+    }
+
+    .project-badge.live {
+      background: linear-gradient(135deg, #4ecdc4, #44a08d);
+      color: white;
+    }
+
+    .project-badge.winner {
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      color: #000;
+    }
+
+    .project-subtitle {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+      font-weight: 500;
     }
 
     .project-title {
@@ -947,6 +1462,47 @@
     }
 
     .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-size: 0.875rem;
+    }
+
+    .project-link.primary {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: white;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+
+    .project-link.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+      background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+    }
+
+    .project-link.secondary {
+      background: rgba(99, 102, 241, 0.1);
+      border: 2px solid rgba(99, 102, 241, 0.3);
+      color: var(--text-primary);
+      backdrop-filter: blur(10px);
+    }
+
+    .project-link.secondary:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .project-link i {
+      font-size: 1rem;
+    }
+
+    .project-link.old-style {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
@@ -1161,10 +1717,27 @@
     .form-group label {
       font-weight: 600;
       color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group label i {
+      color: var(--accent-primary);
+      font-size: 0.875rem;
+    }
+
+    .char-count {
+      margin-left: auto;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-weight: 500;
     }
 
     .form-group input,
-    .form-group textarea {
+    .form-group textarea,
+    .form-group select {
       padding: 1rem;
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -1408,6 +1981,50 @@
     .footer-copyright {
       color: var(--text-muted);
       font-size: 0.875rem;
+    }
+
+    /* Footer Statistics */
+    .footer-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .footer-stat-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .footer-stat-item i {
+      color: var(--accent-primary);
+    }
+
+    /* Built With Section */
+    .built-with {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .tech-stack-footer {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .tech-badge {
+      padding: 0.4rem 0.8rem;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--text-primary);
+      font-weight: 500;
     }
 
     /* Animations */
@@ -2248,8 +2865,49 @@
       }
 
       .hero-role {
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin-bottom: 1.5rem;
+        justify-content: center;
+      }
+
+      .hero-metrics {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .metric-value {
+        font-size: 2rem;
+      }
+
+      .hero-cta-enhanced {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .cta-primary,
+      .cta-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .availability-status {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .quick-links {
+        justify-content: center;
+      }
+
+      .back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
       }
 
       .hero-cta {
@@ -2369,18 +3027,85 @@
         font-size: 1rem;
       }
 
+      .project-stats {
+        gap: 2rem;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
+      .project-filter {
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+      }
+
+      .filter-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.875rem;
+      }
+
       .projects-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
 
       .project-card {
+        padding: 0;
+      }
+
+      .project-image-container {
+        height: 220px;
+      }
+
+      .project-image {
+        object-fit: cover;
+      }
+
+      .project-content {
         padding: 1.5rem;
+      }
+
+      .project-badge {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .project-overlay {
+        padding: 0.75rem;
+      }
+
+      .preview-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+      }
+
+      .project-links {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .project-link {
+        width: 100%;
+        justify-content: center;
+        padding: 0.65rem 1.25rem;
       }
 
       .project-card h3 {
         font-size: 1.2rem;
         margin-bottom: 0.8rem;
+      }
+    }
+
+    /* Tablet Responsive */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .project-image-container {
+        height: 240px;
       }
 
       .project-card p {
@@ -2776,6 +3501,9 @@
   </style>
 </head>
 <body data-theme="dark">
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <!-- Particle Background -->
   <div class="particles" id="particles"></div>
   
@@ -2784,6 +3512,11 @@
     <i class="fas fa-wifi"></i>
     <span>You're offline - Portfolio cached for offline viewing</span>
   </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
   
   <!-- Header -->
   <header class="header">
@@ -2828,12 +3561,64 @@
               <span class="hero-name-large" id="heroName">J Madhan</span>
               <span class="cursor" id="cursor">|</span>
             </div>
-            <p class="hero-role">An AI/ML Developer</p>
+            <p class="hero-role">
+              <span class="role-text" id="roleText">AI/ML Developer</span>
+              <span class="role-cursor">|</span>
+            </p>
           </div>
         </div>
-        <div class="hero-cta">
-          <p>Let's Connect</p>
-          <a href="mailto:jmadhanplacement@gmail.com" class="hero-email">jmadhanplacement@gmail.com</a>
+        
+        <!-- Metrics Dashboard -->
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <div class="metric-value" data-target="10">0</div>
+            <div class="metric-label">Live Projects</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" data-target="3">0</div>
+            <div class="metric-label">Hackathon Wins</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" data-target="99">0</div>
+            <div class="metric-label">% Model Accuracy</div>
+          </div>
+        </div>
+
+        <!-- Enhanced CTAs -->
+        <div class="hero-cta-enhanced">
+          <a href="#contact" class="cta-primary">
+            <span>Let's Connect</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#projects" class="cta-secondary">
+            <span>View My Work</span>
+            <i class="fas fa-code"></i>
+          </a>
+          <a href="https://github.com/JMadhan1" target="_blank" class="cta-tertiary">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+
+        <!-- Availability Status -->
+        <div class="availability-status">
+          <div class="status-indicator">
+            <span class="status-dot pulse"></span>
+            <span class="status-text">Available for Opportunities</span>
+          </div>
+          <div class="quick-links">
+            <a href="mailto:jmadhanplacement@gmail.com" class="quick-link" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://linkedin.com/in/jmadhan" target="_blank" class="quick-link" title="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/JMadhan1" target="_blank" class="quick-link" title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#contact" class="quick-link" title="Schedule Call">
+              <i class="fas fa-calendar"></i>
+            </a>
+          </div>
         </div>
       </div>
       <div class="hero-location">
@@ -3221,201 +4006,428 @@
   <section id="projects" class="section">
     <div class="container">
       <div class="projects-header">
-        <h2 class="projects-title">Code Meets Creativity</h2>
-        <p class="projects-subtitle">Crafted Projects</p>
+        <div class="section-badge">Featured Work</div>
+        <h2 class="projects-title">🚀 Live Projects & Innovations</h2>
+        <p class="projects-subtitle">Explore my AI-powered solutions that are making a real impact. Each project showcases cutting-edge technology, innovative problem-solving, and production-ready deployment.</p>
+        <div class="project-stats">
+          <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Live Projects</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">6</span>
+            <span class="stat-label">AI Solutions</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">3x</span>
+            <span class="stat-label">Hackathon Winner</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Filters -->
+      <div class="project-filter">
+        <button class="filter-btn active" data-filter="all">
+          <i class="fas fa-th"></i> All Projects
+        </button>
+        <button class="filter-btn" data-filter="ai-ml">
+          <i class="fas fa-brain"></i> AI/ML
+        </button>
+        <button class="filter-btn" data-filter="fintech">
+          <i class="fas fa-chart-line"></i> FinTech
+        </button>
+        <button class="filter-btn" data-filter="defi">
+          <i class="fab fa-ethereum"></i> DeFi
+        </button>
+        <button class="filter-btn" data-filter="development">
+          <i class="fas fa-code"></i> Development
+        </button>
       </div>
 
       <div class="projects-grid">
-        <!-- Project 1 -->
-        <div class="project-card animate-on-scroll">
-          <div class="project-header">
-            <div>
-              <h3 class="project-title">CiteCraft.AI - AI-Powered Research Paper Generator</h3>
+        <!-- Project 1: CodeMind AI -->
+        <div class="project-card animate-on-scroll" data-category="ai-ml development">
+          <div class="project-image-container">
+            <img src="img/codemind.png" alt="CodeMind AI - Intelligent Code Analysis Platform" class="project-image" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-badge featured">Featured</div>
+              <div class="project-badge live">Live</div>
             </div>
-            <span class="project-badge winner">Winner</span>
+            <div class="project-hover-content">
+              <a href="https://vibe2-1.onrender.com/" target="_blank" class="preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </a>
+            </div>
           </div>
-          <p class="project-description">
-            <strong>Challenge:</strong> Researchers spend 40+ hours formatting papers manually, leading to inconsistent citations and delayed publications.<br><br>
-            <strong>Solution:</strong> Built AI-powered platform that transforms research abstracts into professionally formatted academic papers with automated structure generation and content coherence.<br><br>
-            <strong>Impact:</strong> Reduced paper formatting time by 85%, supporting 4 citation formats (APA, MLA, IEEE, Chicago) with 99.2% accuracy. Integrated plagiarism detection and real-time collaborative editing for seamless team research.<br><br>
-            <strong>Team:</strong> Led 4-member team, architected system design, implemented AI models, and managed deployment pipeline.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">Flask</span>
-            <span class="tech-tag">FastAPI</span>
-            <span class="tech-tag">PostgreSQL</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JMadhan1/CiteCraft.AI" target="_blank" class="project-link">
-              <i class="fab fa-github"></i> Code
-            </a>
+          <div class="project-content">
+            <div class="project-header">
+              <div>
+                <h3 class="project-title">CodeMind AI</h3>
+                <p class="project-subtitle">Intelligent Code Analysis & Development Platform</p>
+              </div>
+            </div>
+            <p class="project-description">
+              An intelligent AI-powered code analysis and development platform that provides real-time code reviews, smart suggestions, syntax optimization, and collaborative coding environments. Features advanced AI algorithms for code quality assessment and automated refactoring.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag" data-tech="python"><i class="fab fa-python"></i> Python</span>
+              <span class="tech-tag" data-tech="ai"><i class="fas fa-brain"></i> AI/ML</span>
+              <span class="tech-tag" data-tech="monaco"><i class="fas fa-code"></i> Monaco Editor</span>
+              <span class="tech-tag" data-tech="flask"><i class="fas fa-server"></i> Flask</span>
+              <span class="tech-tag" data-tech="api"><i class="fab fa-github"></i> GitHub API</span>
+            </div>
+            <div class="project-links">
+              <a href="https://vibe2-1.onrender.com/" target="_blank" class="project-link primary">
+                <i class="fas fa-external-link-alt"></i> View Live Project
+              </a>
+              <a href="https://github.com/JMadhan1/CodeMind" target="_blank" class="project-link secondary">
+                <i class="fab fa-github"></i> Source Code
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Project 2 -->
-        <div class="project-card animate-on-scroll">
-          <div class="project-header">
-            <div>
-              <h3 class="project-title">ONEDeFi - AI-Powered Multi-Chain DeFi MCP Server</h3>
+        <!-- Project 2: CiteCraft AI -->
+        <div class="project-card animate-on-scroll" data-category="ai-ml development">
+          <div class="project-image-container">
+            <img src="img/citecraft.png" alt="CiteCraft AI - Citation Management System" class="project-image" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-badge winner">Winner</div>
+              <div class="project-badge live">Live</div>
             </div>
-            <span class="project-badge winner">Winner</span>
+            <div class="project-hover-content">
+              <a href="https://citecraft-ai.onrender.com/" target="_blank" class="preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </a>
+            </div>
           </div>
-          <p class="project-description">
-            <strong>Challenge:</strong> DeFi users struggle with complex multi-chain portfolio management, losing 15-20% potential yield due to suboptimal strategies and manual monitoring.<br><br>
-            <strong>Solution:</strong> Built intelligent DeFi operations system with AI-driven portfolio management across Ethereum, Polygon, and Solana using MCP Protocol for seamless integration.<br><br>
-            <strong>Impact:</strong> Achieved 99.9% uptime with systematized yield optimization, reducing manual monitoring by 90%. Portfolio Doctor AI component increased yield by 23% through automated rebalancing.<br><br>
-            <strong>Team:</strong> Co-led 3-member team, developed Web3 integrations, implemented AI algorithms, and handled blockchain security protocols.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Flask</span>
-            <span class="tech-tag">Web3.py</span>
-            <span class="tech-tag">Solana SDK</span>
-            <span class="tech-tag">MCP Protocol</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JMadhan1/ONEDeFi-MCP-Server" target="_blank" class="project-link">
-              <i class="fab fa-github"></i> Code
-            </a>
+          <div class="project-content">
+            <div class="project-header">
+              <div>
+                <h3 class="project-title">CiteCraft AI</h3>
+                <p class="project-subtitle">Revolutionary AI-Driven Citation Management System</p>
+              </div>
+            </div>
+            <p class="project-description">
+              Revolutionary AI-driven citation management system that automatically generates accurate citations in multiple formats (APA, MLA, Chicago, Harvard). Includes research paper organization, smart bibliography generation, reference management, and plagiarism detection capabilities for academic excellence.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag" data-tech="html"><i class="fab fa-html5"></i> HTML5</span>
+              <span class="tech-tag" data-tech="css"><i class="fab fa-css3-alt"></i> CSS3</span>
+              <span class="tech-tag" data-tech="flask"><i class="fas fa-server"></i> Flask</span>
+              <span class="tech-tag" data-tech="fastapi"><i class="fas fa-rocket"></i> FastAPI</span>
+              <span class="tech-tag" data-tech="postgresql"><i class="fas fa-database"></i> PostgreSQL</span>
+            </div>
+            <div class="project-links">
+              <a href="https://citecraft-ai.onrender.com/" target="_blank" class="project-link primary">
+                <i class="fas fa-external-link-alt"></i> View Live Project
+              </a>
+              <a href="https://github.com/JMadhan1/CiteCraft.AI" target="_blank" class="project-link secondary">
+                <i class="fab fa-github"></i> Source Code
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Project 2 -->
-        <div class="project-card animate-on-scroll">
-          <div class="project-header">
-            <div>
-              <h3 class="project-title">Smart Receipt Manager with Vision API</h3>
+        <!-- Project 3: InvestGuard AI -->
+        <div class="project-card animate-on-scroll" data-category="ai-ml fintech">
+          <div class="project-image-container">
+            <img src="img/investguardai.png" alt="InvestGuard AI - Investment Portfolio Management" class="project-image" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-badge featured">Featured</div>
+              <div class="project-badge live">Live</div>
             </div>
-            <span class="project-badge">Live</span>
+            <div class="project-hover-content">
+              <a href="https://investguardai.onrender.com/" target="_blank" class="preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </a>
+            </div>
           </div>
-          <p class="project-description">
-            <strong>Challenge:</strong> Small businesses lose 3-5 hours weekly on manual receipt processing, leading to accounting errors and compliance issues.<br><br>
-            <strong>Solution:</strong> Built AI-powered receipt manager with Google Vision API for OCR and Gemini AI for multilingual financial insights, featuring secure OAuth 2.0 authentication.<br><br>
-            <strong>Impact:</strong> Achieved 95% OCR accuracy across 12 languages, reduced processing time by 80%. Deployed on Google Cloud Run with 99.99% uptime, handling 10,000+ requests/second during peak loads.<br><br>
-            <strong>Team:</strong> Solo project - designed architecture, implemented AI integrations, built CI/CD pipelines, and managed cloud deployment.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Flask</span>
-            <span class="tech-tag">Google Vision API</span>
-            <span class="tech-tag">Gemini AI</span>
-            <span class="tech-tag">Firestore</span>
-          </div>
-          <div class="project-links">
-            <a href="https://raseed-842527385575.us-central1.run.app/dashboard" target="_blank" class="project-link">
-              <i class="fas fa-external-link-alt"></i> Live Demo
-            </a>
+          <div class="project-content">
+            <div class="project-header">
+              <div>
+                <h3 class="project-title">InvestGuard AI</h3>
+                <p class="project-subtitle">Comprehensive AI-Powered Investment Portfolio Management</p>
+              </div>
+            </div>
+            <p class="project-description">
+              Comprehensive AI-powered investment portfolio management platform featuring real-time market analysis, intelligent risk assessment, portfolio optimization, predictive analytics, and personalized investment recommendations. Integrates live market data and advanced financial modeling.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag" data-tech="python"><i class="fab fa-python"></i> Python</span>
+              <span class="tech-tag" data-tech="ai"><i class="fas fa-brain"></i> BERT</span>
+              <span class="tech-tag" data-tech="lstm"><i class="fas fa-chart-line"></i> LSTM</span>
+              <span class="tech-tag" data-tech="flask"><i class="fas fa-server"></i> Flask</span>
+              <span class="tech-tag" data-tech="api"><i class="fas fa-shield-alt"></i> SEBI API</span>
+            </div>
+            <div class="project-links">
+              <a href="https://investguardai.onrender.com/" target="_blank" class="project-link primary">
+                <i class="fas fa-external-link-alt"></i> View Live Project
+              </a>
+              <a href="https://github.com/JMadhan1/InvestGuard-AI" target="_blank" class="project-link secondary">
+                <i class="fab fa-github"></i> Source Code
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Project 3 -->
-        <div class="project-card animate-on-scroll">
-          <div class="project-header">
-            <div>
-              <h3 class="project-title">DocuMind - Abstractive Text Summarizer</h3>
+        <!-- Project 4: OneDeFi -->
+        <div class="project-card animate-on-scroll" data-category="defi fintech">
+          <div class="project-image-container">
+            <img src="img/onedefi.png" alt="OneDeFi - Unified DeFi Management Hub" class="project-image" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-badge winner">Winner</div>
+              <div class="project-badge live">Live</div>
             </div>
-            <span class="project-badge">Live</span>
+            <div class="project-hover-content">
+              <a href="https://onedefi-97wa.onrender.com/" target="_blank" class="preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </a>
+            </div>
           </div>
-          <p class="project-description">
-            <strong>Challenge:</strong> Professionals spend 2-3 hours daily reading lengthy documents, reducing productivity and decision-making speed.<br><br>
-            <strong>Solution:</strong> Built abstractive summarization tool using BART transformers that generates human-like summaries with multi-format input support and privacy-first architecture.<br><br>
-            <strong>Impact:</strong> Achieved ROUGE-L score of 0.85, reducing document processing time by 75%. Supports PDF, DOCX, and text inputs with 8-second average processing time.<br><br>
-            <strong>Team:</strong> Solo project during Microsoft Azure internship - implemented BART model, built FastAPI backend, and deployed on Azure with Streamlit frontend.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">BART Transformers</span>
-            <span class="tech-tag">FastAPI</span>
-            <span class="tech-tag">Streamlit</span>
-            <span class="tech-tag">Azure AI</span>
-          </div>
-          <div class="project-links">
-            <a href="https://documind-ai.onrender.com" target="_blank" class="project-link">
-              <i class="fas fa-external-link-alt"></i> Live Demo
-            </a>
+          <div class="project-content">
+            <div class="project-header">
+              <div>
+                <h3 class="project-title">OneDeFi</h3>
+                <p class="project-subtitle">Unified Decentralized Finance Management Hub</p>
+              </div>
+            </div>
+            <p class="project-description">
+              Unified decentralized finance (DeFi) management hub that aggregates multiple DeFi protocols in one seamless interface. Features cross-chain asset management, yield farming optimization, liquidity pool analytics, staking rewards tracking, and secure wallet integration for simplified DeFi investing.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag" data-tech="python"><i class="fab fa-python"></i> Python</span>
+              <span class="tech-tag" data-tech="web3"><i class="fab fa-ethereum"></i> Web3.py</span>
+              <span class="tech-tag" data-tech="solana"><i class="fas fa-coins"></i> Solana SDK</span>
+              <span class="tech-tag" data-tech="flask"><i class="fas fa-server"></i> Flask</span>
+              <span class="tech-tag" data-tech="mcp"><i class="fas fa-network-wired"></i> MCP Protocol</span>
+            </div>
+            <div class="project-links">
+              <a href="https://onedefi-97wa.onrender.com/" target="_blank" class="project-link primary">
+                <i class="fas fa-external-link-alt"></i> View Live Project
+              </a>
+              <a href="https://github.com/JMadhan1/ONEDeFi-MCP-Server" target="_blank" class="project-link secondary">
+                <i class="fab fa-github"></i> Source Code
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Project 4 -->
-        <div class="project-card animate-on-scroll">
-          <div class="project-header">
-            <div>
-              <h3 class="project-title">Facial Authenticity Verification Model</h3>
+        <!-- Project 5: Navigate AI -->
+        <div class="project-card animate-on-scroll" data-category="ai-ml development">
+          <div class="project-image-container">
+            <img src="img/navigate.png" alt="Navigate AI - Smart Navigation Platform" class="project-image" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-badge live">Live</div>
+            </div>
+            <div class="project-hover-content">
+              <a href="https://navigate-ai-2.onrender.com/" target="_blank" class="preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </a>
             </div>
           </div>
-          <p class="project-description">
-            <strong>Challenge:</strong> Deepfake technology poses security threats with 95% of AI-generated faces being undetectable by human eyes, requiring automated detection systems.<br><br>
-            <strong>Solution:</strong> Developed ML/DL system to detect AI-generated faces using advanced feature engineering and multiple model architectures including SVM (RBF) and ResNet50 transfer learning.<br><br>
-            <strong>Impact:</strong> Achieved 99.4% accuracy with SVM model and 98.5% with ResNet50, engineered 81 unique image features, and conducted comprehensive analysis of 7 ML and 4 DL architectures.<br><br>
-            <strong>Team:</strong> Research intern at MANIT Bhopal - led data collection, feature engineering, model development, and performance evaluation.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">TensorFlow</span>
-            <span class="tech-tag">OpenCV</span>
-            <span class="tech-tag">Scikit-learn</span>
-            <span class="tech-tag">ResNet50</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JMadhan1/Adaptive-Facial-identity-verification-system" target="_blank" class="project-link">
-              <i class="fab fa-github"></i> Code
-            </a>
+          <div class="project-content">
+            <div class="project-header">
+              <div>
+                <h3 class="project-title">Navigate AI</h3>
+                <p class="project-subtitle">Smart AI Navigation & Route Optimization Platform</p>
+              </div>
+            </div>
+            <p class="project-description">
+              Smart AI navigation and route optimization platform that provides intelligent travel planning, real-time traffic analysis, multi-modal transportation suggestions, and personalized route recommendations. Uses machine learning to predict optimal travel times and suggest alternative routes.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag" data-tech="python"><i class="fab fa-python"></i> Python</span>
+              <span class="tech-tag" data-tech="ai"><i class="fas fa-brain"></i> Voice AI</span>
+              <span class="tech-tag" data-tech="nlp"><i class="fas fa-language"></i> NLP</span>
+              <span class="tech-tag" data-tech="flask"><i class="fas fa-server"></i> Flask</span>
+              <span class="tech-tag" data-tech="ml"><i class="fas fa-route"></i> ML Routing</span>
+            </div>
+            <div class="project-links">
+              <a href="https://navigate-ai-2.onrender.com/" target="_blank" class="project-link primary">
+                <i class="fas fa-external-link-alt"></i> View Live Project
+              </a>
+              <a href="https://github.com/JMadhan1/NAVIGATE-AI" target="_blank" class="project-link secondary">
+                <i class="fab fa-github"></i> Source Code
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Project 5 -->
-        <div class="project-card animate-on-scroll">
-          <div class="project-header">
-            <div>
-              <h3 class="project-title">AI Job & Resume Matching System</h3>
+        <!-- Project 6: CareerSync AI -->
+        <div class="project-card animate-on-scroll" data-category="ai-ml development">
+          <div class="project-image-container">
+            <img src="img/careersync.png" alt="CareerSync AI - Career Development Platform" class="project-image" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-badge winner">Winner</div>
+              <div class="project-badge live">Live</div>
             </div>
-            <span class="project-badge winner">Winner</span>
+            <div class="project-hover-content">
+              <a href="https://careersync-ai.onrender.com/" target="_blank" class="preview-btn">
+                <i class="fas fa-eye"></i> Preview
+              </a>
+            </div>
           </div>
-          <p class="project-description">
-            <strong>Challenge:</strong> HR teams spend 60% of time on manual resume screening, leading to bias and missing qualified candidates, while job seekers face unfair evaluation processes.<br><br>
-            <strong>Solution:</strong> Built intelligent resume-job matching system using advanced NLP algorithms and ML models to eliminate hiring bias and automate candidate screening.<br><br>
-            <strong>Impact:</strong> Automated 85% of screening work, reduced hiring time by 70%, and improved candidate-employer matching accuracy by 92%. Eliminated unconscious bias in initial screening phases.<br><br>
-            <strong>Team:</strong> Led 5-member team, designed NLP pipeline, implemented BERT-based matching algorithms, and built Flask web interface.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">NLP</span>
-            <span class="tech-tag">TensorFlow</span>
-            <span class="tech-tag">BERT</span>
-            <span class="tech-tag">Flask</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JMadhan1/AI-Powered-Resume-Job-matching-System" target="_blank" class="project-link">
-              <i class="fab fa-github"></i> Code
-            </a>
+          <div class="project-content">
+            <div class="project-header">
+              <div>
+                <h3 class="project-title">CareerSync AI</h3>
+                <p class="project-subtitle">AI-Powered Career Development & Job Matching Platform</p>
+              </div>
+            </div>
+            <p class="project-description">
+              AI-powered career development and job matching platform that analyzes skills, experience, and career goals to provide personalized job recommendations, resume optimization, interview preparation, skill gap analysis, and career path suggestions using advanced NLP and machine learning algorithms.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag" data-tech="python"><i class="fab fa-python"></i> Python</span>
+              <span class="tech-tag" data-tech="nlp"><i class="fas fa-language"></i> NLP</span>
+              <span class="tech-tag" data-tech="tensorflow"><i class="fas fa-brain"></i> TensorFlow</span>
+              <span class="tech-tag" data-tech="bert"><i class="fas fa-robot"></i> BERT</span>
+              <span class="tech-tag" data-tech="flask"><i class="fas fa-server"></i> Flask</span>
+            </div>
+            <div class="project-links">
+              <a href="https://careersync-ai.onrender.com/" target="_blank" class="project-link primary">
+                <i class="fas fa-external-link-alt"></i> View Live Project
+              </a>
+              <a href="https://github.com/JMadhan1/AI-Powered-Resume-Job-matching-System" target="_blank" class="project-link secondary">
+                <i class="fab fa-github"></i> Source Code
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Project 6 -->
+        <!-- Project 7: Smart Receipt Manager -->
         <div class="project-card animate-on-scroll">
-          <div class="project-header">
-            <div>
-              <h3 class="project-title">AI-Powered TB Diagnosis Platform</h3>
+          <div class="project-image-container" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-receipt" style="font-size: 5rem; color: white; opacity: 0.3;"></i>
+            <div class="project-badge" style="position: absolute; top: 1rem; right: 1rem; z-index: 10;">Live</div>
+          </div>
+          <div class="project-content">
+            <div class="project-header">
+              <div>
+                <h3 class="project-title">Smart Receipt Manager with Vision API</h3>
+              </div>
+            </div>
+            <p class="project-description">
+              <strong>Challenge:</strong> Small businesses lose 3-5 hours weekly on manual receipt processing, leading to accounting errors and compliance issues.<br><br>
+              <strong>Solution:</strong> Built AI-powered receipt manager with Google Vision API for OCR and Gemini AI for multilingual financial insights, featuring secure OAuth 2.0 authentication.<br><br>
+              <strong>Impact:</strong> Achieved 95% OCR accuracy across 12 languages, reduced processing time by 80%. Deployed on Google Cloud Run with 99.99% uptime, handling 10,000+ requests/second during peak loads.<br><br>
+              <strong>Team:</strong> Solo project - designed architecture, implemented AI integrations, built CI/CD pipelines, and managed cloud deployment.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Flask</span>
+              <span class="tech-tag">Google Vision API</span>
+              <span class="tech-tag">Gemini AI</span>
+              <span class="tech-tag">Firestore</span>
+            </div>
+            <div class="project-links">
+              <a href="https://raseed-842527385575.us-central1.run.app/dashboard" target="_blank" class="project-link">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+              <a href="https://github.com/JMadhan1/Smart-Receipt-Manager" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Code
+              </a>
             </div>
           </div>
-          <p class="project-description">
-            <strong>Challenge:</strong> 1.5 million people die annually from TB due to delayed diagnosis, especially in remote areas lacking radiologists and advanced medical equipment.<br><br>
-            <strong>Solution:</strong> Built PulmoScan.AI - AI-powered tuberculosis diagnosis platform using TensorFlow Lite for offline X-ray evaluation with telemedicine integration for remote healthcare access.<br><br>
-            <strong>Impact:</strong> Achieved 94% diagnostic accuracy, reduced diagnosis time from days to minutes, and enabled offline operation for areas with limited internet connectivity. Designed for deployment in resource-constrained environments.<br><br>
-            <strong>Team:</strong> Solo project - developed computer vision models, implemented TensorFlow Lite optimization, and designed healthcare-focused UI/UX.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">TensorFlow Lite</span>
-            <span class="tech-tag">Computer Vision</span>
-            <span class="tech-tag">Healthcare AI</span>
+        </div>
+
+        <!-- Project 8: DocuMind -->
+        <div class="project-card animate-on-scroll">
+          <div class="project-image-container" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-file-alt" style="font-size: 5rem; color: white; opacity: 0.3;"></i>
+            <div class="project-badge" style="position: absolute; top: 1rem; right: 1rem; z-index: 10;">Live</div>
           </div>
-          <div class="project-links">
-            <a href="https://github.com/JMadhan1/Ai-Powered-TB-Daignosis-Care-Platform--pulmoscan.ai" target="_blank" class="project-link">
-              <i class="fab fa-github"></i> Code
-            </a>
+          <div class="project-content">
+            <div class="project-header">
+              <div>
+                <h3 class="project-title">DocuMind - Abstractive Text Summarizer</h3>
+              </div>
+            </div>
+            <p class="project-description">
+              <strong>Challenge:</strong> Professionals spend 2-3 hours daily reading lengthy documents, reducing productivity and decision-making speed.<br><br>
+              <strong>Solution:</strong> Built abstractive summarization tool using BART transformers that generates human-like summaries with multi-format input support and privacy-first architecture.<br><br>
+              <strong>Impact:</strong> Achieved ROUGE-L score of 0.85, reducing document processing time by 75%. Supports PDF, DOCX, and text inputs with 8-second average processing time.<br><br>
+              <strong>Team:</strong> Solo project during Microsoft Azure internship - implemented BART model, built FastAPI backend, and deployed on Azure with Streamlit frontend.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">BART Transformers</span>
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">Streamlit</span>
+              <span class="tech-tag">Azure AI</span>
+            </div>
+            <div class="project-links">
+              <a href="https://documind-ai.onrender.com" target="_blank" class="project-link">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+              <a href="https://github.com/JMadhan1/DocuMind" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 9: Facial Authenticity Verification -->
+        <div class="project-card animate-on-scroll">
+          <div class="project-image-container" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-user-shield" style="font-size: 5rem; color: white; opacity: 0.3;"></i>
+          </div>
+          <div class="project-content">
+            <div class="project-header">
+              <div>
+                <h3 class="project-title">Facial Authenticity Verification Model</h3>
+              </div>
+            </div>
+            <p class="project-description">
+              <strong>Challenge:</strong> Deepfake technology poses security threats with 95% of AI-generated faces being undetectable by human eyes, requiring automated detection systems.<br><br>
+              <strong>Solution:</strong> Developed ML/DL system to detect AI-generated faces using advanced feature engineering and multiple model architectures including SVM (RBF) and ResNet50 transfer learning.<br><br>
+              <strong>Impact:</strong> Achieved 99.4% accuracy with SVM model and 98.5% with ResNet50, engineered 81 unique image features, and conducted comprehensive analysis of 7 ML and 4 DL architectures.<br><br>
+              <strong>Team:</strong> Research intern at MANIT Bhopal - led data collection, feature engineering, model development, and performance evaluation.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">TensorFlow</span>
+              <span class="tech-tag">OpenCV</span>
+              <span class="tech-tag">Scikit-learn</span>
+              <span class="tech-tag">ResNet50</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/JMadhan1/Adaptive-Facial-identity-verification-system" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 10: TB Diagnosis Platform -->
+        <div class="project-card animate-on-scroll">
+          <div class="project-image-container" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-heartbeat" style="font-size: 5rem; color: white; opacity: 0.3;"></i>
+          </div>
+          <div class="project-content">
+            <div class="project-header">
+              <div>
+                <h3 class="project-title">AI-Powered TB Diagnosis Platform</h3>
+              </div>
+            </div>
+            <p class="project-description">
+              <strong>Challenge:</strong> 1.5 million people die annually from TB due to delayed diagnosis, especially in remote areas lacking radiologists and advanced medical equipment.<br><br>
+              <strong>Solution:</strong> Built PulmoScan.AI - AI-powered tuberculosis diagnosis platform using TensorFlow Lite for offline X-ray evaluation with telemedicine integration for remote healthcare access.<br><br>
+              <strong>Impact:</strong> Achieved 94% diagnostic accuracy, reduced diagnosis time from days to minutes, and enabled offline operation for areas with limited internet connectivity. Designed for deployment in resource-constrained environments.<br><br>
+              <strong>Team:</strong> Solo project - developed computer vision models, implemented TensorFlow Lite optimization, and designed healthcare-focused UI/UX.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">TensorFlow Lite</span>
+              <span class="tech-tag">Computer Vision</span>
+              <span class="tech-tag">Healthcare AI</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/JMadhan1/Ai-Powered-TB-Daignosis-Care-Platform--pulmoscan.ai" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -3813,47 +4825,90 @@
             </div>
           </div>
 
+          <!-- Quick Actions -->
+          <div class="quick-actions" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+            <a href="https://drive.google.com/file/d/1YOUR_RESUME_ID/view" target="_blank" class="cta-download-cv" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1rem 1.5rem; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); color: white; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+              <i class="fas fa-download"></i>
+              <span>Download Resume (PDF)</span>
+            </a>
+            <a href="#contact" class="cta-schedule-call" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 1rem 1.5rem; background: rgba(99, 102, 241, 0.1); border: 2px solid rgba(99, 102, 241, 0.3); color: var(--text-primary); border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Schedule a Call</span>
+            </a>
+          </div>
+
           <div class="social-links" style="justify-content: flex-start; margin-top: 2rem;">
-            <a href="https://github.com/JMadhan1" target="_blank" class="social-link">
+            <a href="https://github.com/JMadhan1" target="_blank" class="social-link" title="GitHub">
               <i class="fab fa-github"></i>
             </a>
-            <a href="https://www.linkedin.com/in/j-madhan-6b90a32b1" target="_blank" class="social-link">
+            <a href="https://www.linkedin.com/in/j-madhan-6b90a32b1" target="_blank" class="social-link" title="LinkedIn">
               <i class="fab fa-linkedin"></i>
             </a>
-            <a href="https://leetcode.com/u/JMadhan" target="_blank" class="social-link">
+            <a href="https://leetcode.com/u/JMadhan" target="_blank" class="social-link" title="LeetCode">
               <i class="fas fa-code"></i>
             </a>
-            <a href="https://www.instagram.com/_officialmadhan?igsh=ZjFjaXg3a21jZmw0" target="_blank" class="social-link">
+            <a href="https://www.instagram.com/_officialmadhan?igsh=ZjFjaXg3a21jZmw0" target="_blank" class="social-link" title="Instagram">
               <i class="fab fa-instagram"></i>
             </a>
           </div>
         </div>
 
-        <form class="contact-form animate-on-scroll">
+        <form class="contact-form animate-on-scroll" id="contactForm">
+          <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">Send a Message</h3>
+          
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+            <label for="name">
+              <i class="fas fa-user"></i> Name
+            </label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required>
           </div>
           
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <label for="email">
+              <i class="fas fa-envelope"></i> Email
+            </label>
+            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
           </div>
           
           <div class="form-group">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" required>
+            <label for="projectType">
+              <i class="fas fa-briefcase"></i> Project Type
+            </label>
+            <select id="projectType" name="projectType" required>
+              <option value="">Select project type</option>
+              <option value="fulltime">Full-time Position</option>
+              <option value="internship">Internship</option>
+              <option value="freelance">Freelance Project</option>
+              <option value="consulting">Consulting</option>
+              <option value="collaboration">Collaboration</option>
+              <option value="other">Other</option>
+            </select>
           </div>
           
           <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
+            <label for="subject">
+              <i class="fas fa-tag"></i> Subject
+            </label>
+            <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
           </div>
           
-          <button type="submit" class="btn btn-primary">
-            <i class="fas fa-paper-plane"></i>
-            Send Message
-          </button>
+          <div class="form-group">
+            <label for="message">
+              <i class="fas fa-comment"></i> Message
+              <span class="char-count" id="charCount">0 / 500</span>
+            </label>
+            <textarea id="message" name="message" placeholder="Tell me about your project or opportunity..." rows="6" maxlength="500" required></textarea>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+              <i class="fas fa-paper-plane"></i>
+              <span>Send Message</span>
+            </button>
+            <div class="form-success" id="formSuccess" style="display: none; padding: 1rem; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 10px; color: #22c55e; margin-top: 1rem;">
+              <i class="fas fa-check-circle"></i> Message sent successfully! I'll get back to you soon.
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -3945,7 +5000,40 @@
 
       <div class="footer-bottom">
         <p>I'm open to freelance projects, full-time roles, or collaborative ideas. Connect and build something meaningful together.</p>
-        <p class="footer-copyright">&copy; 2025 J Madhan. All rights reserved.</p>
+        
+        <!-- Site Statistics -->
+        <div class="footer-stats">
+          <div class="footer-stat-item">
+            <i class="fas fa-code"></i>
+            <span>10+ Live Projects</span>
+          </div>
+          <div class="footer-stat-item">
+            <i class="fas fa-trophy"></i>
+            <span>3x Hackathon Winner</span>
+          </div>
+          <div class="footer-stat-item">
+            <i class="fas fa-certificate"></i>
+            <span>8+ Certifications</span>
+          </div>
+        </div>
+
+        <!-- Built With Section -->
+        <div class="built-with">
+          <p style="margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.875rem;">
+            Built with <i class="fas fa-heart" style="color: #ef4444;"></i> using
+          </p>
+          <div class="tech-stack-footer">
+            <span class="tech-badge">HTML5</span>
+            <span class="tech-badge">CSS3</span>
+            <span class="tech-badge">JavaScript</span>
+            <span class="tech-badge">PWA</span>
+          </div>
+        </div>
+
+        <p class="footer-copyright">
+          &copy; <span id="currentYear">2025</span> J Madhan. All rights reserved. | 
+          <a href="https://github.com/JMadhan1/Portfolio" target="_blank" style="color: var(--accent-primary); text-decoration: none;">View Source Code</a>
+        </p>
       </div>
     </div>
   </footer>
@@ -4049,44 +5137,139 @@
     }
 
     // Contact form handling
-    document.querySelector('.contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Get form data
-      const formData = new FormData(this);
-      const name = formData.get('name');
-      const email = formData.get('email');
-      const subject = formData.get('subject');
-      const message = formData.get('message');
-      
-      // Create mailto link
-      const mailtoLink = `mailto:jmadhanplacement@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-      
-      // Open email client
-      window.location.href = mailtoLink;
-      
-      // Show success message
-      alert('Thank you for your message! Your email client should open now.');
-      
-      // Reset form
-      this.reset();
-    });
+    // Character Counter for Message
+    const messageTextarea = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    
+    if (messageTextarea && charCount) {
+      messageTextarea.addEventListener('input', function() {
+        const length = this.value.length;
+        charCount.textContent = `${length} / 500`;
+        
+        if (length > 450) {
+          charCount.style.color = '#ef4444';
+        } else if (length > 400) {
+          charCount.style.color = '#f59e0b';
+        } else {
+          charCount.style.color = 'var(--text-secondary)';
+        }
+      });
+    }
+
+    // Enhanced Form Submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = document.getElementById('submitBtn');
+        const formSuccess = document.getElementById('formSuccess');
+        
+        // Get form data
+        const formData = new FormData(this);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const projectType = formData.get('projectType');
+        const subject = formData.get('subject');
+        const message = formData.get('message');
+        
+        // Validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert('Please enter a valid email address');
+          return;
+        }
+        
+        // Show loading state
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        
+        // Create mailto link with enhanced formatting
+        const emailBody = `Name: ${name}\nEmail: ${email}\nProject Type: ${projectType}\n\nMessage:\n${message}`;
+        const mailtoLink = `mailto:jmadhanplacement@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+        
+        // Open email client
+        window.location.href = mailtoLink;
+        
+        // Show success message after a delay
+        setTimeout(() => {
+          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> <span>Send Message</span>';
+          submitBtn.disabled = false;
+          if (formSuccess) {
+            formSuccess.style.display = 'block';
+            contactForm.reset();
+            if (charCount) charCount.textContent = '0 / 500';
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+              formSuccess.style.display = 'none';
+            }, 5000);
+          }
+        }, 1000);
+      });
+    }
 
     // Header scroll effect
+    // Enhanced Scroll Handling
     window.addEventListener('scroll', () => {
       const header = document.querySelector('.header');
+      const backToTop = document.getElementById('backToTop');
+      const scrollProgress = document.getElementById('scrollProgress');
+      
+      // Header scroll effect
       if (window.scrollY > 100) {
-        header.style.background = 'rgba(15, 23, 42, 0.95)';
+        header.classList.add('scrolled');
         if (document.body.getAttribute('data-theme') === 'light') {
           header.style.background = 'rgba(255, 255, 255, 0.95)';
         }
       } else {
-        header.style.background = 'rgba(15, 23, 42, 0.8)';
+        header.classList.remove('scrolled');
         if (document.body.getAttribute('data-theme') === 'light') {
           header.style.background = 'rgba(255, 255, 255, 0.8)';
         }
       }
+
+      // Back to top button
+      if (backToTop) {
+        if (window.scrollY > 300) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      }
+
+      // Scroll progress indicator
+      if (scrollProgress) {
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (window.scrollY / windowHeight) * 100;
+        scrollProgress.style.width = scrolled + '%';
+      }
+
+      // Active section highlighting
+      updateActiveNavLink();
     });
+
+    // Update Active Navigation Link
+    function updateActiveNavLink() {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    }
 
     // Mobile menu functionality (basic implementation)
     document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
@@ -4139,9 +5322,107 @@
       setTimeout(typeName, 2000);
     }
 
+    // Rotating Role Text
+    function initRotatingRoles() {
+      const roles = [
+        "AI/ML Developer",
+        "Hackathon Winner",
+        "Innovation Creator",
+        "Problem Solver",
+        "Full Stack Developer"
+      ];
+      
+      const roleTextElement = document.getElementById('roleText');
+      if (!roleTextElement) return;
+      
+      let currentRoleIndex = 0;
+      let isDeleting = false;
+      let currentText = '';
+      let typingSpeed = 100;
+      
+      function typeRole() {
+        const currentRole = roles[currentRoleIndex];
+        
+        if (isDeleting) {
+          currentText = currentRole.substring(0, currentText.length - 1);
+          typingSpeed = 50;
+        } else {
+          currentText = currentRole.substring(0, currentText.length + 1);
+          typingSpeed = 100;
+        }
+        
+        roleTextElement.textContent = currentText;
+        
+        if (!isDeleting && currentText === currentRole) {
+          typingSpeed = 2000; // Pause at end
+          isDeleting = true;
+        } else if (isDeleting && currentText === '') {
+          isDeleting = false;
+          currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+        }
+        
+        setTimeout(typeRole, typingSpeed);
+      }
+      
+      setTimeout(typeRole, 3000); // Start after name typing
+    }
+
+    // Animated Counter for Metrics
+    function animateCounter(element, target, duration = 2000) {
+      const start = 0;
+      const increment = target / (duration / 16);
+      let current = start;
+      
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target + (target === 99 ? '' : '+');
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current) + (target === 99 ? '' : '+');
+        }
+      }, 16);
+    }
+
+    // Initialize Metrics Animation
+    function initMetricsAnimation() {
+      const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const metricValue = entry.target.querySelector('.metric-value');
+            if (metricValue) {
+              const target = parseInt(metricValue.getAttribute('data-target'));
+              animateCounter(metricValue, target);
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.metric-card').forEach(card => {
+        observer.observe(card);
+      });
+    }
+
+    // Set Current Year
+    function setCurrentYear() {
+      const yearElement = document.getElementById('currentYear');
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+    }
+
     // Initialize name typewriter effect
     document.addEventListener('DOMContentLoaded', function() {
+      setCurrentYear();
       typeWriterName();
+      initRotatingRoles();
+      initMetricsAnimation();
       
       // Register Service Worker for offline functionality
       if ('serviceWorker' in navigator) {
@@ -4426,10 +5707,16 @@
           
           const filter = button.getAttribute('data-filter');
           
-          projectCards.forEach(card => {
-            if (filter === 'all' || card.getAttribute('data-category') === filter) {
-              card.style.display = 'block';
-              card.style.animation = 'fadeInUp 0.5s ease';
+          projectCards.forEach((card, index) => {
+            const categories = card.getAttribute('data-category') || '';
+            const categoryArray = categories.split(' ');
+            
+            if (filter === 'all' || categoryArray.includes(filter)) {
+              card.style.display = 'flex';
+              card.style.animation = 'none';
+              setTimeout(() => {
+                card.style.animation = 'fadeInUp 0.5s ease';
+              }, 10);
             } else {
               card.style.display = 'none';
             }
