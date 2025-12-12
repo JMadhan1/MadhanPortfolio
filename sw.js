@@ -1,9 +1,15 @@
 // Service Worker for Offline Portfolio Access
-const CACHE_NAME = 'madhan-portfolio-v2';
+const CACHE_NAME = 'madhan-portfolio-v3';
 const urlsToCache = [
   '/',
   '/index.html',
   '/img/img1.jpg',
+  '/img/codemind.png',
+  '/img/citecraft.png',
+  '/img/investguardai.png',
+  '/img/onedefi.png',
+  '/img/navigate.png',
+  '/img/careersync.png',
   '/manifest.json',
   '/sw.js',
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap',
